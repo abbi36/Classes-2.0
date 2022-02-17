@@ -1,64 +1,39 @@
-class Pet {
-    constructor(species) {
-        this.species = species;
-    }
-    describe() {
-        console.log(`This pet is a ${this.species}`);
+class BankAccount {
+    constructor(start) {
+        this.balance = start;
     }
 }
 
-class Dog extends Pet {
-    constructor(owner, breed, age) {
-        super('dog');
-        this.owner = owner;
-        this.breed = breed;
-        this.age = age;
-    }
-    howls() {
-        console.log('This dog howls');
-    }
-    describe() {
-        console.log(`The ${this.species} is a ${this.breed} and he is almost ${this.age} years old.`)
-    }
-}
-class Cat extends Pet {
-    constructor(owner, breed, age, noise) {
-        super('cat');
-        this.owner = owner;
-        this.breed = breed;
-        this.age = age;
+class VendingMachine {
+    constructor() {
+        this.items = new Map();
+        this.items.set('Sprite', 1.25);
+        this.items.set('Coke', 1.50);
+        this.items.set('Water', 1.75);
+        this.items.set('Tea', 2.00);
     }
 
-    purrs() {
-        console.log('The cat purrs');
-    }
-    describe() {
-        console.log(`The cat is a ${this.breed} and she is ${this.age} years old.`)
-    }
-}
+    buy(account, item) {
+        const price = this.items.get(item);
 
-class Goat extends Pet {
-    constructor(owner) {
-        super('goat');
-        this.owner = owner;
-    }
-    describe() {
-        console.log(`The goat is owned by ${this.owner}.`)
+        if (price == undefined) {
+            throw new Error('The item does not exist');
+        } 
+        if (price < account.balance) {
+            account.balance - price;
+                console.log(`Successfully bought ${item}.`)
+        } else {
+            throw new Error('Insufficient Funds.');
+        }
     }
 }
 
 class App {
     static main() {
-        const myPet = new Pet('dog');
-        const myDog = new Dog('Abbi', 'saint bernard', 7);
-        const myCat = new Cat('Abbi', 'tabby', 4);
-        const myGoat = new Goat('Abbi');
-        myPet.describe();
-        myDog.describe();
-        myDog.howls();
-        myCat.describe();
-        myCat.purrs();
-        myGoat.describe();
+        const account = new BankAccount(200);
+        const machine = new VendingMachine();
+
+        machine.buy(account, 'Sprite');
     }
 }
 
