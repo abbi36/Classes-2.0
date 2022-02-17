@@ -37,16 +37,28 @@ class Cat extends Pet {
     }
 }
 
+class Goat extends Pet {
+    constructor(owner) {
+        super('goat');
+        this.owner = owner;
+    }
+    describe() {
+        console.log(`The goat is owned by ${this.owner}.`)
+    }
+}
+
 class App {
     static main() {
         const myPet = new Pet('dog');
         const myDog = new Dog('Abbi', 'saint bernard', 7);
         const myCat = new Cat('Abbi', 'tabby', 4);
+        const myGoat = new Goat('Abbi');
         myPet.describe();
         myDog.describe();
         myDog.howls();
         myCat.describe();
         myCat.purrs();
+        myGoat.describe();
     }
 }
 
