@@ -8,15 +8,17 @@ class Pet {
 }
 
 class Dog extends Pet {
-    constructor(owner, breed, age, sound) {
+    constructor(owner, breed, age) {
         super('dog');
         this.owner = owner;
         this.breed = breed;
         this.age = age;
-        this.sound = sound;
+    }
+    howls() {
+        console.log('This dog howls');
     }
     describe() {
-        console.log(`The ${this.species} is a ${this.breed} and he is almost ${this.age} years old and still likes to ${this.sound}.`)
+        console.log(`The ${this.species} is a ${this.breed} and he is almost ${this.age} years old.`)
     }
 }
 class Cat extends Pet {
@@ -25,21 +27,26 @@ class Cat extends Pet {
         this.owner = owner;
         this.breed = breed;
         this.age = age;
-        this.noise = noise;
+    }
+
+    purrs() {
+        console.log('The cat purrs');
     }
     describe() {
-        console.log(`The cat is a ${this.breed} that ${this.noise} and she is ${this.age} years old.`)
+        console.log(`The cat is a ${this.breed} and she is ${this.age} years old.`)
     }
 }
 
 class App {
     static main() {
         const myPet = new Pet('dog');
-        const myDog = new Dog('Abbi', 'saint bernard', 7, 'howl');
-        const myCat = new Cat('Abbi', 'tabby', 4, 'purrs');
+        const myDog = new Dog('Abbi', 'saint bernard', 7);
+        const myCat = new Cat('Abbi', 'tabby', 4);
         myPet.describe();
         myDog.describe();
+        myDog.howls();
         myCat.describe();
+        myCat.purrs();
     }
 }
 
